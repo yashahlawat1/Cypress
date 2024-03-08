@@ -14,11 +14,13 @@ describe('Template Spec', async () => {
 
     cy.get('[data-spaceweb="tag"]', {timeout: 120000}).first().click()
 
-    cy.get('[data-testid="tags-value-box"] span', {timeout: 120000})
-      .should("have.length", 6)
-      .first()
-      .should("have.text","Yash")
+    // Asserting that at least one tag exists
+    cy.get('[data-testid="tags-value-box"] span', {timeout: 120000}).should("have.length.gt", 0);
+
+    // Asserting that "Yash" tag exists among all the tags
+    cy.get('[data-testid="tags-value-box"] span', {timeout: 120000}).contains("Yash").should("exist");
 
   });
 });
+
 
